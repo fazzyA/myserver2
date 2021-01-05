@@ -16,6 +16,10 @@ let users = [
 app.get('/signup',(req,res)=>{
 res.sendFile(path.join(__dirname,'registration','signup.html'))
 })
+app.get('/login',(req,res)=>{
+    res.sendFile(path.join(__dirname,'registration','login.html'))
+    })
+    
 app.post('/signup',(req,res)=>{
    // res.send(req.body)
   // console.log(req.body)
@@ -25,8 +29,7 @@ app.post('/signup',(req,res)=>{
       res.send('<h1>User already existed</h1>')
   } else{
       users.push({name,email,password,id:users.length+1})
-     // res.send('user added')
-     res.sendFile(path.join(__dirname, 'registration','login.html'))
+     res.redirect('/login')
   }
 
 })
